@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CampusSync
 
-## Getting Started
+AI-powered calendar for college students. Drop a syllabus screenshot or paste a group chat — CampusSync extracts events, you review them, then they land on a week/month calendar. Optional two-way Google Calendar sync.
 
-First, run the development server:
+## Quick start
 
 ```bash
+npm install
+cp .env.local.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). The home screen is a year wall of month cards. Click a month to open that calendar. You can use the app as a guest (events stay in this browser) until you add keys.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Copy `.env.local.example` and fill in what you have. The app degrades gracefully: missing AI keys use a simple heuristic parser; missing Supabase uses local storage; missing Google OAuth hides live sync.
 
-## Learn More
+| Variable | Where to get it |
+| --- | --- |
+| `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY` | [Supabase](https://supabase.com) → Project Settings → API |
+| `GEMINI_API_KEY` | [Google AI Studio](https://aistudio.google.com/apikey). Model default: `gemini-3.5-flash` |
+| `GROQ_API_KEY` | [Groq Console](https://console.groq.com/keys). Model default: `openai/gpt-oss-120b` |
+| `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | [Google Cloud Console](https://console.cloud.google.com/apis/credentials) OAuth client (Web) |
+| `NEXT_PUBLIC_APP_URL` | `http://localhost:3000` locally, your Vercel URL in production |
 
-To learn more about Next.js, take a look at the following resources:
+### Supabase setup
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Create a project.
+2. Auth → Providers: enable Email and Google (for app login).
+3. SQL Editor: paste and run [`supabase/migrations/001_init.sql`](supabase/migrations/001_init.sql).
+4. Confirm Storage bucket `screenshots` exists (the migration creates it).
+5. Site URL / redirect URLs: `{APP_URL}/auth/callback`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Google Calendar OAuth (separate from login)
+
+1. Enable **Google Calendar API**.
+2. OAuth client type **Web application**.
+3. Authorized redirect URI: `{APP_URL}/api/google/callback`.
+4. In the app: Settings → Connect Google Calendar → pick which calendar to sync into.
+
+CampusSync login can use Google via Supabase. Calendar access is a second connect so refresh tokens are stored on your `profiles` row.
+
+## How the AI layer works
+
+All extraction goes through [`lib/ai/extractEvents.ts`](lib/ai/extractEvents.ts):
+
+- Images → Gemini vision (`gemini-3.5-flash`)
+- Text → Gemini, then Groq (`openai/gpt-oss-120b`) if Gemini fails
+- No keys → heuristic parser so the review UI still works
+
+Chat lives in [`lib/ai/chat.ts`](lib/ai/chat.ts) and always returns a proposed mutation for confirmation — nothing is written until you tap **Add**.
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Push the repo and import in Vercel.
+2. Add the same env vars.
+3. Set `NEXT_PUBLIC_APP_URL` to the production URL.
+4. Update Google/Supabase redirect URLs.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Scripts
+
+- `npm run dev` — local dev (Turbopack)
+- `npm run build` — production build
+- `npm run start` — serve the build
