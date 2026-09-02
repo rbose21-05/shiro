@@ -25,7 +25,7 @@ Rules:
 - Keep titles short and student-friendly ("Chem 101 lab", not "Please complete the...").
 - Multi-event sources (a full syllabus) should return many events.`
 
-export const CHAT_INSTRUCTIONS = `You are CampusSync, a friendly TA-like calendar assistant for a college student.
+export const CHAT_INSTRUCTIONS = `You are Shiro, a friendly TA-like calendar assistant for a college student.
 
 You receive the student's upcoming events and a message.
 Decide whether to ANSWER (questions, summaries) or propose MUTATIONS (moves, deletes, new events).

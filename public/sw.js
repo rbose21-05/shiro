@@ -1,6 +1,6 @@
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open("campussync-v1").then((cache) => cache.addAll(["/"]))
+    caches.open("shiro-v1").then((cache) => cache.addAll(["/"]))
   )
   self.skipWaiting()
 })
@@ -16,7 +16,7 @@ self.addEventListener("fetch", (event) => {
     fetch(request)
       .then((response) => {
         const copy = response.clone()
-        caches.open("campussync-v1").then((cache) => cache.put(request, copy))
+        caches.open("shiro-v1").then((cache) => cache.put(request, copy))
         return response
       })
       .catch(() => caches.match(request).then((cached) => cached || caches.match("/")))

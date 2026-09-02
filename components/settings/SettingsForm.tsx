@@ -67,7 +67,7 @@ export function SettingsForm() {
         <div>
           <h1 className="font-heading text-3xl">Settings</h1>
           <p className="text-sm text-muted-foreground">
-            Themes, Google Calendar, and how CampusSync talks to the rest of your life.
+            Themes, Google Calendar, and how Shiro talks to the rest of your life.
           </p>
         </div>
 

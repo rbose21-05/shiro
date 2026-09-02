@@ -125,14 +125,14 @@ export function ChatPanel() {
         onClick={() => setOpen(true)}
       >
         <MessageCircleIcon />
-        Ask CampusSync
+        Ask Shiro
       </Button>
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetContent side="right" className="flex w-full flex-col sm:max-w-md">
           <SheetHeader>
             <SheetTitle className="flex items-center gap-2">
               <SparklesIcon className="size-4 text-primary" />
-              Ask CampusSync
+              Ask Shiro
             </SheetTitle>
             <SheetDescription>
               Natural language, with a confirmation step. Never silent edits.

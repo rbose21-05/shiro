@@ -22,13 +22,13 @@ export function ReminderWatcher() {
     const soon = events.filter(
       (event) => !event.completed && isDueSoon(parseISO(event.start_time))
     )
-    const key = "campussync.notified"
+    const key = "shiro.notified"
     const notified = new Set<string>(
       JSON.parse(sessionStorage.getItem(key) || "[]")
     )
     for (const event of soon) {
       if (notified.has(event.id)) continue
-      new Notification("Due soon on CampusSync", { body: event.title })
+      new Notification("Due soon on Shiro", { body: event.title })
       notified.add(event.id)
     }
     sessionStorage.setItem(key, JSON.stringify([...notified]))

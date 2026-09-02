@@ -43,7 +43,7 @@ export function YearWall() {
       <header className="relative z-20 mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-5 sm:px-8">
         <div>
           <p className="font-display text-2xl font-bold tracking-tight sm:text-3xl">
-            CampusSync
+            Shiro
           </p>
           <p className="text-sm text-[#3a2430]/70">
             Dig through the basket. Pick a month.

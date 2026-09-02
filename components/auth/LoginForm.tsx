@@ -62,7 +62,7 @@ export function LoginForm({ mode }: { mode: "login" | "signup" }) {
   return (
     <div className="mx-auto flex min-h-dvh max-w-md flex-col justify-center px-6">
       <Link href="/" className="font-display text-2xl font-bold">
-        CampusSync
+        Shiro
       </Link>
       <h1 className="font-heading mt-6 text-3xl">
         {mode === "login" ? "Welcome back" : "Create your campus calendar"}

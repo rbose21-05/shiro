@@ -108,7 +108,7 @@ export function AddSomething({
             </DialogTitle>
           </DialogHeader>
           <p className="text-sm text-muted-foreground">
-            Paste a syllabus snippet, a group chat, or drop a screenshot. CampusSync
+            Paste a syllabus snippet, a group chat, or drop a screenshot. Shiro
             will propose events — you approve them.
           </p>
           <button

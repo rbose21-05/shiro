@@ -24,7 +24,7 @@ export function appUrl() {
 }
 
 export const DEMO_USER_ID = "demo-user"
-export const GUEST_STORAGE_KEY = "campussync.guest"
-export const EVENTS_STORAGE_KEY = "campussync.events"
-export const PROFILE_STORAGE_KEY = "campussync.profile"
-export const VIBE_STORAGE_KEY = "campussync.vibe"
+export const GUEST_STORAGE_KEY = "shiro.guest"
+export const EVENTS_STORAGE_KEY = "shiro.events"
+export const PROFILE_STORAGE_KEY = "shiro.profile"
+export const VIBE_STORAGE_KEY = "shiro.vibe"

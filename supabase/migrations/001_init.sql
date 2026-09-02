@@ -1,4 +1,4 @@
--- CampusSync initial schema
+-- Shiro initial schema
 create extension if not exists "pgcrypto";
 
 do $$ begin

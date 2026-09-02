@@ -38,7 +38,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               </Button>
             </Link>
             <Link href="/app" className="font-display text-lg font-bold">
-              CampusSync
+              Shiro
             </Link>
           </div>
           <div className="flex items-center gap-2">

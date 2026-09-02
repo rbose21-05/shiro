@@ -22,13 +22,13 @@ const fraunces = Fraunces({
 })
 
 export const metadata: Metadata = {
-  title: "CampusSync — AI calendar for college",
+  title: "Shiro — AI calendar for college",
   description:
-    "Upload a syllabus screenshot or paste a chat. CampusSync extracts deadlines and puts them on your calendar — after you review.",
+    "Upload a syllabus screenshot or paste a chat. Shiro extracts deadlines and puts them on your calendar — after you review.",
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
-    title: "CampusSync",
+    title: "Shiro",
     statusBarStyle: "default",
   },
 }

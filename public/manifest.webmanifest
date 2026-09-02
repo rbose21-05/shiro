@@ -1,6 +1,6 @@
 {
-  "name": "CampusSync",
-  "short_name": "CampusSync",
+  "name": "Shiro",
+  "short_name": "Shiro",
   "description": "AI calendar for college students",
   "start_url": "/",
   "display": "standalone",

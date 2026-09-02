@@ -1,6 +1,6 @@
-# CampusSync
+# Shiro
 
-AI-powered calendar for college students. Drop a syllabus screenshot or paste a group chat — CampusSync extracts events, you review them, then they land on a week/month calendar. Optional two-way Google Calendar sync.
+AI-powered calendar for college students. Drop a syllabus screenshot or paste a group chat — Shiro extracts events, you review them, then they land on a week/month calendar. Optional two-way Google Calendar sync.
 
 ## Quick start
 
@@ -39,7 +39,7 @@ Copy `.env.local.example` and fill in what you have. The app degrades gracefully
 3. Authorized redirect URI: `{APP_URL}/api/google/callback`.
 4. In the app: Settings → Connect Google Calendar → pick which calendar to sync into.
 
-CampusSync login can use Google via Supabase. Calendar access is a second connect so refresh tokens are stored on your `profiles` row.
+Shiro login can use Google via Supabase. Calendar access is a second connect so refresh tokens are stored on your `profiles` row.
 
 ## How the AI layer works
 
